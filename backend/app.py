@@ -2,8 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import google.generativeai as genai
 
-# 🔑 PUT YOUR REAL API KEY HERE
-genai.configure(api_key="AIzaSyD4IVupV7eFuUe83NWucJQAKuL91YskXas")
+import os
+import google.generativeai as genai
+
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+
 
 # ✅ USE UPDATED MODEL
 model = genai.GenerativeModel("gemini-2.5-flash-lite")
@@ -18,7 +21,7 @@ def chat():
 
     try:
         response = model.generate_content(
-            f"You are Sora, a friendly AI assistant. Reply clearly and briefly.\nUser: {message}"
+            f"You are Kage, a friendly AI assistant. Reply clearly and briefly.\nUser: {message}"
         )
 
         reply = response.text
@@ -26,7 +29,7 @@ def chat():
     except Exception as e:
         # 🔍 SHOW REAL ERROR IN TERMINAL
         print("❌ GEMINI ERROR:", e)
-        reply = "Sora AI error. Check backend terminal."
+        reply = "Kage AI error. Check backend terminal."
 
     return jsonify({"reply": reply})
 
