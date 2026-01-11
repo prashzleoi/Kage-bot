@@ -33,6 +33,7 @@ def chat():
 
     return jsonify({"reply": reply})
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=10000)
+git add backend/app.py
+git commit -m "Use Render PORT env variable for Flask"
+git push
 
